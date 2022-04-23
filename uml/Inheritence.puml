@@ -1,0 +1,131 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class AbstractFlyingObject
+{
+    # int locationX
+    # int locationY
+    # int speedX
+    # int speedY
+    # BufferedImage image
+    # int width
+    # int height
+    # boolean isValid
+
+    + AbstractFlyingObject(int locationX, int locationY, int speedX, int speedY):void
+    + forward():void
+    + crash(AbstarctFlyingObject flyingObject):boolean
+    + setLocation(double locationX, double locationY):void
+    + getLocationX():int
+    + getLocationY():int
+    + getSpeedY():int
+    + getImage():BufferedImage
+    + getWidth():int
+    + getHeight():int
+    + notValid():boolean
+    + vanish():void
+}
+abstract class AbstractAircraft
+{
+	# int maxHp
+    # int hp
+    + AbstractAircraft(int locationX, int locationY, int speedX, int speedY, int hp):void
+    + decreaseHp(int decrease):void
+    + getHp():int
+    + makeSupply():AbstractSupply
+    + {abstract} shoot():List<Bullet>
+ }
+
+abstract class BaseBullet
+{
+    - int power
+    + Bullet(int locationX, int locationY, int speedX, int speedY, int power):void
+    + forward():void
+	+ getPower():int
+}
+
+abstract class AbstractSupply
+{
+    + AbstractSupply(int locationX, int locationY, int speedX, int speedY):void
+    + takeEffect(HeroAircraft heroAircraft):void
+}
+
+AbstractFlyingObject <|-- AbstractAircraft
+AbstractFlyingObject <|-- BaseBullet
+AbstractFlyingObject <|-- AbstractSupply
+
+AbstractAircraft <|-- HeroAircraft
+AbstractAircraft <|-- MobEnemy
+AbstractAircraft <|-- EliteEnemy
+AbstractAircraft <|-- BossEnemy
+
+BaseBullet <|-- HeroBullet
+BaseBullet <|-- EnemyBullet
+
+AbstractSupply <|-- BloodSupply
+AbstractSupply <|-- BombSupply
+AbstractSupply <|-- FireSupply
+
+class HeroAircraft {
+    - int shootNum
+    - int power
+    - int direction
+    - {static} HeroAircraft heroAircraft
+    - HeroAircraft(int locationX, int locationY, int speedX, int speedY, int hp):void
+    + {static}creatHeroAircraft():HeroAircraft
+    + forward():void
+    + shoot():List<Bullet>
+}
+
+class MobEnemy {
+    + MobEnemy(int locationX, int locationY, int speedX, int speedY, int hp):void
+    + forward():void
+    + shoot():List<Bullet>
+}
+
+class EliteEnemy{
+    - int shootNum
+    - int power
+    - int direction
+    + EliteEnemy(int locationX, int locationY, int speedX, int speedY, int hp):void
+    + forward():void
+    + shoot():List<Bullet>
+}
+
+class BossEnemy{
+    - int shootNum
+    - int power
+    - int direction
+    + BossEnemy(int locationX, int locationY, int speedX, int speedY, int hp):void
+    + forward():void
+    + shoot():List<Bullet>
+}
+
+class HeroBullet {
+    + HeroBullet(int locationX, int locationY,
+     int speedX, int speedY, int power):void
+}
+
+class EnemyBullet {
+    + EnemyBullet(int locationX, int locationY,
+     int speedX, int speedY, int power):void
+}
+
+class BloodSupply{
+    + BloodSupply(int locationX, int locationY,
+    int speedX, int speedY):void
+    + takeEffect(HeroAircraft heroAircraft):void
+}
+
+class BombSupply{
+    + BombSupply(int locationX, int locationY,
+    int speedX, int speedY):void
+    + takeEffect(HeroAircraft heroAircraft):void
+}
+
+class FireSupply{
+    + FireSupply(int locationX, int locationY,
+    int speedX, int speedY):void
+    + takeEffect(HeroAircraft heroAircraft):void
+}
+@enduml

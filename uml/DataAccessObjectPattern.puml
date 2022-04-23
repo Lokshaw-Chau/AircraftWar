@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface RecordDao{
+    + getAll():List<HistoryRecord>
+    + addRecord():void
+    + deleteByRank(int rank):void
+    + sortByScore():void
+    + writeToFile():void
+    + makeRecord(int score):HistoryRecord
+}
+
+class RecordDaompl{
+    - RecordList:List<HistoryRecord>
+    - path:Path
+    - file:File
+    + RecordDaompl()
+    + getAll():List<HistoryRecord>
+    + addRecord():void
+    + deleteByRank(int rank):void
+    + sortByScore():void
+    + writeToFile():void
+    + makeRecord():HistoryRecord
+
+}
+
+RecordDao <|.. RecordDaompl
+RecordDaompl --> HistoryRecord
+class HistoryRecord{
+    - rank:int
+    - playerid:String
+    - score:int
+    - time:String
+    + setrank():void
+    + getrank():int
+    + setplayerid():void
+    + getplayerid():String
+    + setscore():void
+    + getscore():int
+    + settime():void
+    + gettime():String
+}
+
+@enduml

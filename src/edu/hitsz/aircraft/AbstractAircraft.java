@@ -1,9 +1,12 @@
 package edu.hitsz.aircraft;
 
-import edu.hitsz.bullet.Bullet;
-import edu.hitsz.basic.FlyingObject;
+import edu.hitsz.basic.AbstractFlyingObject;
+import edu.hitsz.bullet.BaseBullet;
+import edu.hitsz.supply.*;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * 所有种类飞机的抽象父类：
@@ -11,18 +14,23 @@ import java.util.List;
  *
  * @author hitsz
  */
-public abstract class AbstractAircraft extends FlyingObject {
+public abstract class AbstractAircraft extends AbstractFlyingObject {
+    /**
+     * 生命值
+     */
+    protected int maxHp;
     protected int hp;
 
     public AbstractAircraft(int locationX, int locationY, int speedX, int speedY, int hp) {
         super(locationX, locationY, speedX, speedY);
         this.hp = hp;
+        this.maxHp = hp;
     }
 
-    public void decreaseHp(int decrease){
+    public void decreaseHp(int decrease) {
         hp -= decrease;
-        if(hp <= 0){
-            hp=0;
+        if (hp <= 0) {
+            hp = 0;
             vanish();
         }
     }
@@ -31,14 +39,34 @@ public abstract class AbstractAircraft extends FlyingObject {
         return hp;
     }
 
+    public List<AbstractSuppply> makeSupply() {
+        List<AbstractSuppply> supplyList = new LinkedList<>();
+        SupplyFactory supplyFactory = null;
+        Random random = new Random();
+        int num = random.nextInt(4);
+        if (num == 2) {
+            supplyFactory = new BloodSupplyFactory();
+        }
+        if (num == 3) {
+            supplyFactory = new BombSupplyFactory();
+        }
+        if (num == 1) {
+            supplyFactory = new FireSupplyFactory();
+        }
+        if (supplyFactory == null) {
+            return new LinkedList<>();
+        }
+        supplyList.add(supplyFactory.creatSupply(locationX, locationY));
+        return supplyList;
+    }
 
     /**
      * 飞机射击方法，可射击对象必须实现
-     * @return
-     *  可射击对象需实现，返回子弹
-     *  非可射击对象空实现，返回null
+     *
+     * @return 可射击对象需实现，返回子弹
+     * 非可射击对象空实现，返回null
      */
-    public abstract List<Bullet> shoot();
+    public abstract List<BaseBullet> shoot();
 
 }
 

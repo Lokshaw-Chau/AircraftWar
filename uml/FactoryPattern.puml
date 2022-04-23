@@ -1,0 +1,115 @@
+@startuml
+abstract class AbstractAircraft
+{
+	# int maxHp
+    # int hp
+    + AbstractAircraft(int locationX, int locationY, int speedX, int speedY, int hp):void
+    + decreaseHp(int decrease):void
+    + getHp():int
+    + makeSupply():AbstractSupply
+    + {abstract} shoot():List<Bullet>
+ }
+ abstract class AbstractSupply
+ {
+     + AbstractSupply(int locationX, int locationY, int speedX, int speedY):void
+     + takeEffect(HeroAircraft heroAircraft):void
+ }
+
+ interface EnemyFactory
+ {
+     +{abstract} creatEnemy():AbstractAircraft
+ }
+ interface SupplyFactory
+ {
+     +{abstract} creatSupply(int locationX, int locationY):AbstractSupply
+ }
+
+ class MobEnemyFactory{
+     + creatEnemy():AbstractAircraft
+ }
+
+ class EliteEnemyFactory{
+     + creatEnemy():AbstractAircraft
+ }
+
+ class BossEnemyFactory{
+     + creatEnemy():AbstractAircraft
+ }
+
+ class BloodSupplyFactory{
+     + creatSupply(int locationX, int locationY):AbstractSupply
+ }
+
+ class BombSupplyFactory{
+     + creatSupply(int locationX, int locationY):AbstractSupply
+ }
+
+ class FireSupplyFactory{
+     + creatSupply(int locationX, int locationY):AbstractSupply
+ }
+
+ AbstractSupply <|-- BloodSupply
+ AbstractSupply <|-- BombSupply
+ AbstractSupply <|-- FireSupply
+
+ EnemyFactory <|.. MobEnemyFactory
+ EnemyFactory <|.. EliteEnemyFactory
+ EnemyFactory <|.. BossEnemyFactory
+
+ SupplyFactory <|.. BloodSupplyFactory
+ SupplyFactory <|.. BombSupplyFactory
+ SupplyFactory <|.. FireSupplyFactory
+
+ MobEnemyFactory ..> MobEnemy :creat
+ EliteEnemyFactory ..> EliteEnemy :creat
+ BossEnemyFactory ..> BossEnemy :creat
+
+ BloodSupplyFactory ..> BloodSupply :creat
+ FireSupplyFactory ..> FireSupply:creat
+ BombSupplyFactory ..> BombSupply:creat
+
+ AbstractAircraft <|-- MobEnemy
+ AbstractAircraft <|-- EliteEnemy
+ AbstractAircraft <|-- BossEnemy
+class MobEnemy {
+    + MobEnemy(int locationX, int locationY, int speedX, int speedY, int hp):void
+    + forward():void
+    + shoot():List<Bullet>
+}
+
+class EliteEnemy{
+    - int shootNum
+    - int power
+    - int direction
+    + EliteEnemy(int locationX, int locationY, int speedX, int speedY, int hp):void
+    + forward():void
+    + shoot():List<Bullet>
+}
+
+class BossEnemy{
+    - int shootNum
+    - int power
+    - int direction
+    + BossEnemy(int locationX, int locationY, int speedX, int speedY, int hp):void
+    + forward():void
+    + shoot():List<Bullet>
+}
+
+class BloodSupply{
+    + BloodSupply(int locationX, int locationY,
+    int speedX, int speedY):void
+    + takeEffect(HeroAircraft heroAircraft):void
+}
+
+class BombSupply{
+    + BombSupply(int locationX, int locationY,
+    int speedX, int speedY):void
+    + takeEffect(HeroAircraft heroAircraft):void
+}
+
+class FireSupply{
+    + FireSupply(int locationX, int locationY,
+    int speedX, int speedY):void
+    + takeEffect(HeroAircraft heroAircraft):void
+}
+@enduml

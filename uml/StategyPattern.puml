@@ -1,0 +1,82 @@
+@startuml
+'https://plantuml.com/class-diagram
+class FireSupply{
+    + FireSupply(int locationX, int locationY,
+    int speedX, int speedY):void
+    + takeEffect(HeroAircraft heroAircraft):void
+}
+
+ class EliteEnemyFactory{
+     + creatEnemy():AbstractAircraft
+ }
+
+ class BossEnemyFactory{
+     + creatEnemy():AbstractAircraft
+ }
+ class HeroAircraft {
+    - int shootNum
+    - int power
+    - int direction
+    - Strategy strategy
+    - {static} HeroAircraft heroAircraft
+    - HeroAircraft(int locationX, int locationY, int speedX, int speedY, int hp):void
+    + {static}creatHeroAircraft():HeroAircraft
+    + setStrategy():void
+    + forward():void
+    + shoot():List<Bullet>
+}
+
+
+class EliteEnemy{
+    - int shootNum
+    - int power
+    - int direction
+    - Strategy strategy
+    + EliteEnemy(int locationX, int locationY, int speedX, int speedY, int hp):void
+    + forward():void
+    + shoot():List<Bullet>
+}
+
+class BossEnemy{
+    - int shootNum
+    - int power
+    - int direction
+    - Strategy strategy
+    + BossEnemy(int locationX, int locationY, int speedX, int speedY, int hp):void
+    + forward():void
+    + shoot():List<Bullet>
+}
+
+EliteEnemyFactory ..> EliteEnemy
+EliteEnemy o--> Strategy
+BossEnemyFactory ..> BossEnemy
+BossEnemy o--> Strategy
+ interface Strategy{
+ + doShoot():List<BaseBullet>
+ }
+
+FireSupply ..> HeroAircraft
+HeroAircraft o--> Strategy
+
+class HeroScratteredShoot{
+    + doShoot(int locationX, int locationY,int speed, int direction, int shootNum, int power):List<BaseBullet>
+}
+
+class HeroStraightShoot{
+    + doShoot(int locationX, int locationY,int speed, int direction, int shootNum, int power):List<BaseBullet>
+}
+
+class EnemyScratteredShoot{
+    + doShoot(int locationX, int locationY,int speed, int direction, int shootNum, int power):List<BaseBullet>
+}
+
+class EnemyStraightShoot{
+    + doShoot(int locationX, int locationY,int speed, int direction, int shootNum, int power):List<BaseBullet>
+}
+
+Strategy<|.. HeroScratteredShoot
+Strategy<|.. HeroStraightShoot
+Strategy<|.. EnemyStraightShoot
+Strategy<|.. EnemyScratteredShoot
+
+@enduml
