@@ -54,7 +54,7 @@ public class Main {
             //创建访问记录的对象
             RecordDaompl recordDaompl = RecordDaompl.getInstance();
             //制作本次游戏的记录并将本次记录添加到历史记录中
-            String prompt = "你本次的成绩是" + score + "，请输入你的用户名以保存记录";
+            String prompt = "你本次的成绩是" + score + "，请输入你的用户名以保存记录（请不要输入\",\"\"\\n\"等字符）";
             String ID = JOptionPane.showInputDialog(null, prompt, "Default");
             recordDaompl.addRecord(recordDaompl.makeRecord(score, ID));
             //进行排序
