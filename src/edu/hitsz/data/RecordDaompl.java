@@ -83,8 +83,8 @@ public class RecordDaompl implements RecordDao {
     }
 
     @Override
-    public void deleteByRow(int rank) throws IOException {
-        historyRecords.removeIf(item -> item.getRank() == rank);
+    public void deleteByRow(int row) throws IOException {
+        historyRecords.removeIf(item -> item.getRank() == row + 1);
         sortByScore();
         writeToFile();
     }
