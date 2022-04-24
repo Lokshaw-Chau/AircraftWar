@@ -2,8 +2,8 @@ package edu.hitsz;
 
 import edu.hitsz.application.EasyGame;
 import edu.hitsz.application.NormalGame;
+import edu.hitsz.data.HistoryRecord;
 import edu.hitsz.data.RecordDaompl;
-import edu.hitsz.data.TableModel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -21,7 +21,7 @@ public class RankingList {
     private JLabel mode;
 
     public RankingList() {
-        DefaultTableModel model = TableModel.getInstance();
+        DefaultTableModel model = new DefaultTableModel(dataProcess(RecordDaompl.getInstance()), getColumnName());
         rankTable.setModel(model);
         scrollTable.setViewportView(rankTable);
         String gameMode;
@@ -29,7 +29,6 @@ public class RankingList {
             gameMode = "EASY";
         } else if (StartPanel.getGame() instanceof NormalGame) {
             gameMode = "MEDIUM";
-
         } else {
             gameMode = "HARD";
         }
@@ -39,14 +38,36 @@ public class RankingList {
             public void actionPerformed(ActionEvent e) {
                 int row = rankTable.getSelectedRow();
                 if (row != -1) {
-                    TableModel.getInstance().removeRow(row);
                     try {
                         RecordDaompl.getInstance().deleteByRow(row);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
+                    model.setDataVector(dataProcess(RecordDaompl.getInstance()), getColumnName());
                 }
             }
         });
+    }
+
+    private static String[][] dataProcess(RecordDaompl recordDaompl) {
+        int recordNum = recordDaompl.getAll().size();
+        if (recordNum == 0) {
+            return null;
+        }
+        String[][] data = new String[recordNum][4];
+        int i = 0;
+        for (HistoryRecord item : recordDaompl.getAll()) {
+            data[i][0] = Integer.toString(item.getRank());
+            data[i][1] = item.getPlayerid();
+            data[i][2] = Integer.toString(item.getScore());
+            data[i][3] = item.getTime();
+            i++;
+        }
+        return data;
+    }
+
+    private static String[] getColumnName() {
+        String[] columnName = {"排名", "ID", "得分", "时间"};
+        return columnName;
     }
 }
