@@ -34,4 +34,8 @@ public class EasyGame extends Game {
     protected void setCycleDuration() {
 
     }
+
+    @Override
+    protected void setEnemyMaxNumber() {
+    }
 }

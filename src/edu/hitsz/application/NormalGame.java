@@ -30,6 +30,11 @@ public class NormalGame extends Game {
     }
 
     @Override
+    protected void setEnemyMaxNumber() {
+        enemyMaxNumber = 6;
+    }
+
+    @Override
     public BufferedImage getBackgroundImage() {
         return ImageManager.BACKGROUND_IMAGE_NORMAL;
     }

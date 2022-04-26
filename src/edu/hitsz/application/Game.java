@@ -40,7 +40,6 @@ public abstract class Game extends JPanel {
 
     private final HeroAircraft heroAircraft;
     protected final List<AbstractAircraft> enemyAircrafts;
-    private final int enemyMaxNumber = 5;
     /**
      * 几个音乐线程
      */
@@ -65,6 +64,7 @@ public abstract class Game extends JPanel {
     protected double magnification = 1;
     protected int bossScoreThreshold = 1000;
     protected int eliteEnemyProbability = 10;
+    protected int enemyMaxNumber = 5;
 
     public Game() {
         heroAircraft = HeroAircraft.creatHeroAircraft();
@@ -75,6 +75,7 @@ public abstract class Game extends JPanel {
         suppplies = new LinkedList<>();
         //设置基本变量
         setBossScoreThreshold();
+        setEnemyMaxNumber();
         //启动背景音乐线程
         bgmMusicThread = new MusicThread("src/videos/bgm.wav");
         bgmMusicThread.setLoop(true);
@@ -116,7 +117,9 @@ public abstract class Game extends JPanel {
                 setEliteEnemyPobability();
                 //提高敌机产生的频率
                 setCycleDuration();
-                System.out.println("难度提升！敌机数值倍率：" + magnification + "，精英机产生的概率：" + eliteEnemyProbability + "%，敌机产生的周期：" + cycleDuration + "ms");
+                if (!(this instanceof EasyGame)) {
+                    System.out.println("难度提升！敌机数值倍率：" + magnification + "，精英机产生的概率：" + eliteEnemyProbability + "%，敌机产生的周期：" + cycleDuration + "ms");
+                }
             }
             // 飞机射出子弹
             if (time % 600 == 0) {
@@ -268,6 +271,11 @@ public abstract class Game extends JPanel {
      * 子类通过重载该方法决定敌机产生的频率
      */
     protected abstract void setCycleDuration();
+
+    /**
+     * 子类通过重载该方法决定最大敌机个数
+     */
+    protected abstract void setEnemyMaxNumber();
 
     /**
      * 碰撞检测：

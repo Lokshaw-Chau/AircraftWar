@@ -9,14 +9,13 @@ public class BombSupplyPublisher {
     private ArrayList<AbstractFlyingObject> flyingObjectList = new ArrayList<>();
 
     private BombSupplyPublisher() {
-
     }
 
     public void addFlyingObject(AbstractFlyingObject flyingObject) {
         flyingObjectList.add(flyingObject);
     }
 
-    private void removeFlyingObject() {
+    public void removeFlyingObject() {
         flyingObjectList.clear();
     }
 

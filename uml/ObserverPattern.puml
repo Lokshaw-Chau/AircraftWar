@@ -1,20 +1,38 @@
 @startuml
-
-class FireSupply{
-    - ArrayList<AbstractFlyingObject> subscribers
-    + FireSupply(int locationX, int locationY,
-        int speedX, int speedY):void
-    + takeEffect(HeroAircraft heroAircraft):void
+class BombSupply{
+    + takeEffect():void
 }
-
-class Publisher{
+BombSupply ..>BombSupplyPublisher
+class BombSupplyPublisher{
     - ArrayList<AbstractFlyingObject> flyingObjectList
-    + subscirbe(AbstactFlyingObject flyingObject)
-    + unSubscribe(AbstactFlyingObject subscriber)
+    -{static} BombSupplyPublisher boomSupplyPublisher
+    - BombSupplyPublisher()
+    + addFlyingObject(AbstactFlyingObject flyingObject):void
+    + removeFlyingObject(AbstactFlyingObject subscriber):void
+    + getInstance():BombSupplyPublisher
+    + induceExplosion():void
 }
-FireSupply o--> AbstractFlyingObject
+BombSupplyPublisher o--> AbstractFlyingObject
 Abstract AbstractFlyingObject{
     + vanish() :void
-    + update() :void
+    + explode() :void
     }
+class MobEnemy {
+    + vanish() :void
+    + explode() :void
+}
+
+class EliteEnemy{
+    + vanish() :void
+    + explode() :void
+}
+
+class EnemyBullet {
+    + vanish() :void
+    + explode() :void
+}
+
+AbstractFlyingObject<|--EliteEnemy
+AbstractFlyingObject<|--MobEnemy
+AbstractFlyingObject<|--EnemyBullet
 @enduml
