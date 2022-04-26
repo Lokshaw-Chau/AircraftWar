@@ -63,6 +63,10 @@ public class HeroAircraft extends AbstractAircraft {
         score += num;
     }
 
+    public static HeroAircraft getInstance() {
+        return heroAircraft;
+    }
+
     public void setStategy(Strategy strategy) {
         this.strategy = strategy;
     }

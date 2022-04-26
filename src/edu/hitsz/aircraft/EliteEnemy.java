@@ -61,6 +61,6 @@ public class EliteEnemy extends AbstractAircraft {
     @Override
     public void explode() {
         vanish();
-        //HeroAircraft.score += 30;
+        HeroAircraft.getInstance().addScore(30);
     }
 }

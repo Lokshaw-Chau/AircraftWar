@@ -35,6 +35,6 @@ public class MobEnemy extends AbstractAircraft {
     @Override
     public void explode() {
         vanish();
-        //HeroAircraft.score += 100;
+        HeroAircraft.getInstance().addScore(10);
     }
 }

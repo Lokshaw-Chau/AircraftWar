@@ -265,7 +265,7 @@ public class Game extends JPanel {
                             suppplies.addAll(enemyAircraft.makeSupply());
                             heroAircraft.addScore(20);
                         }
-                        heroAircraft.addScore(20);
+                        heroAircraft.addScore(10);
                     }
                 }
                 // 英雄机 与 敌机 相撞，均损毁
