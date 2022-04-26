@@ -1,0 +1,20 @@
+@startuml
+
+class FireSupply{
+    - ArrayList<AbstractFlyingObject> subscribers
+    + FireSupply(int locationX, int locationY,
+        int speedX, int speedY):void
+    + takeEffect(HeroAircraft heroAircraft):void
+}
+
+class Publisher{
+    - ArrayList<AbstractFlyingObject> flyingObjectList
+    + subscirbe(AbstactFlyingObject flyingObject)
+    + unSubscribe(AbstactFlyingObject subscriber)
+}
+FireSupply o--> AbstractFlyingObject
+Abstract AbstractFlyingObject{
+    + vanish() :void
+    + update() :void
+    }
+@enduml

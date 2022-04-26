@@ -15,6 +15,7 @@ public class BombSupply extends AbstractSuppply {
 
     @Override
     public void takeEffect(HeroAircraft heroAircraft) {
+        BombSupplyPublisher.getInstance().induceExplosion();
         System.out.println("Bombsupply Active");
     }
 

@@ -2,6 +2,7 @@ package edu.hitsz.application;
 
 import edu.hitsz.RankingList;
 import edu.hitsz.StartPanel;
+import edu.hitsz.aircraft.HeroAircraft;
 import edu.hitsz.data.RecordDaompl;
 
 import javax.swing.*;
@@ -49,7 +50,7 @@ public class Main {
         //游戏结束后获取分数进入排行榜
         synchronized (Main.RANKLOCK) {
             RANKLOCK.wait();
-            int score = game.getScore();
+            int score = HeroAircraft.creatHeroAircraft().getScore();
             //维护数据
             //创建访问记录的对象
             RecordDaompl recordDaompl = RecordDaompl.getInstance();

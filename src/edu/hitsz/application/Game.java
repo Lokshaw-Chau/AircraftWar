@@ -5,6 +5,7 @@ import edu.hitsz.basic.AbstractFlyingObject;
 import edu.hitsz.bullet.BaseBullet;
 import edu.hitsz.supply.AbstractSuppply;
 import edu.hitsz.supply.BombSupply;
+import edu.hitsz.supply.BombSupplyPublisher;
 
 import javax.swing.*;
 import java.awt.*;
@@ -50,7 +51,7 @@ public class Game extends JPanel {
 
     private boolean gameOverFlag = false;
     private boolean bossNotExist = true;
-    private int score = 0;
+    //private int score = 0;
     private int time = 0;
     /**
      * 周期（ms)
@@ -110,7 +111,7 @@ public class Game extends JPanel {
                         enemyFactory = new MobEnemyFactory();
                     }
 
-                    if (score >= bossScoreThreshold && bossNotExist) {
+                    if (heroAircraft.getScore() >= bossScoreThreshold && bossNotExist) {
                         enemyFactory = new BossEnemyFactory();
                         bossNotExist = false;
                         //启动boss音乐线程
@@ -255,16 +256,16 @@ public class Game extends JPanel {
                             //销毁boss机
                             bossScoreThreshold += bossScoreThreshold;
                             bossNotExist = true;
-                            score += 20;
+                            heroAircraft.addScore(20);
                             //关闭bgm_boss线程并打开bgm线程
                             bgmBossMusicThread.setRunning(false);
                             bgmMusicThread.setRunning(true);
                         }
                         if (enemyAircraft instanceof EliteEnemy || enemyAircraft instanceof BossEnemy) {
                             suppplies.addAll(enemyAircraft.makeSupply());
-                            score += 20;
+                            heroAircraft.addScore(20);
                         }
-                        score += 10;
+                        heroAircraft.addScore(20);
                     }
                 }
                 // 英雄机 与 敌机 相撞，均损毁
@@ -279,11 +280,17 @@ public class Game extends JPanel {
             if (heroAircraft.crash(suppply)) {
                 //启动getsupply音效
                 new MusicThread("src/videos/get_supply.wav").start();
-                suppply.takeEffect(heroAircraft);
                 if (suppply instanceof BombSupply) {
+                    for (AbstractFlyingObject item : enemyAircrafts) {
+                        BombSupplyPublisher.getInstance().addFlyingObject(item);
+                    }
+                    for (AbstractFlyingObject item : enemyBullets) {
+                        BombSupplyPublisher.getInstance().addFlyingObject(item);
+                    }
                     //播放炸弹音效
                     new MusicThread("src/videos/bomb_explosion.wav").start();
                 }
+                suppply.takeEffect(heroAircraft);
                 suppply.vanish();
             }
         }
@@ -305,9 +312,6 @@ public class Game extends JPanel {
         suppplies.removeIf(AbstractFlyingObject::notValid);
     }
 
-    public int getScore() {
-        return score;
-    }
 
     //***********************
     //      Paint 各部分
@@ -367,7 +371,7 @@ public class Game extends JPanel {
         int y = 25;
         g.setColor(new Color(16711680));
         g.setFont(new Font("SansSerif", Font.BOLD, 22));
-        g.drawString("SCORE:" + this.score, x, y);
+        g.drawString("SCORE:" + heroAircraft.getScore(), x, y);
         y = y + 20;
         g.drawString("LIFE:" + this.heroAircraft.getHp(), x, y);
     }

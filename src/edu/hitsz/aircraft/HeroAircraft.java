@@ -18,6 +18,7 @@ public class HeroAircraft extends AbstractAircraft {
     /**
      * 攻击方式
      */
+    private int score = 0;
     public static HeroAircraft heroAircraft = new HeroAircraft(0, 0, 0, 0, 0);
     /**
      * 子弹一次发射数量
@@ -52,6 +53,14 @@ public class HeroAircraft extends AbstractAircraft {
         heroAircraft.speedY = 0;
         heroAircraft.setStategy(new HeroStraightShoot());
         return heroAircraft;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void addScore(int num) {
+        score += num;
     }
 
     public void setStategy(Strategy strategy) {
