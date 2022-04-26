@@ -9,15 +9,15 @@ import java.awt.event.ActionListener;
 public class StartPanel {
     private static Game game;
     private static boolean musicOn = true;
-    public JPanel MainPanel;
-    private JCheckBox MusicCheckBox;
-    private JButton EasyModeButton;
-    private JButton NormalModeButton;
-    private JButton HardModeButton;
-    private JPanel TopPanel;
+    public JPanel mainPanel;
+    private JCheckBox musicCheckBox;
+    private JButton easyModeButton;
+    private JButton normalModeButton;
+    private JButton hardModeButton;
+    private JPanel topPanel;
 
     public StartPanel() {
-        EasyModeButton.addActionListener(new ActionListener() {
+        easyModeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 synchronized (Main.GAMELOCK) {
@@ -26,7 +26,7 @@ public class StartPanel {
                 }
             }
         });
-        NormalModeButton.addActionListener(new ActionListener() {
+        normalModeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 synchronized (Main.GAMELOCK) {
@@ -35,7 +35,7 @@ public class StartPanel {
                 }
             }
         });
-        HardModeButton.addActionListener(new ActionListener() {
+        hardModeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 synchronized (Main.GAMELOCK) {
@@ -44,7 +44,7 @@ public class StartPanel {
                 }
             }
         });
-        MusicCheckBox.addActionListener(new ActionListener() {
+        musicCheckBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 musicOn = false;

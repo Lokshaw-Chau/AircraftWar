@@ -34,7 +34,7 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         StartPanel startPanel = new StartPanel();
         //打开起始页
-        frame.add(startPanel.MainPanel);
+        frame.add(startPanel.mainPanel);
         frame.setVisible(true);
         Game game;
         //选择难度后进入游戏
