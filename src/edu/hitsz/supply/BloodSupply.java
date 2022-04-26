@@ -18,6 +18,7 @@ public class BloodSupply extends AbstractSuppply {
 
     @Override
     public void takeEffect(HeroAircraft heroAircraft) {
+        System.out.println("BloodSupply Active");
         heroAircraft.decreaseHp(-heal);
         if (heroAircraft.getHp() > maxHp) {
             heroAircraft.decreaseHp(heroAircraft.getHp() - maxHp);

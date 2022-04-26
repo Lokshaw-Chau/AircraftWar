@@ -10,14 +10,17 @@ import edu.hitsz.application.Main;
  * @date 2022/04/04
  */
 public class MobEnemyFactory implements EnemyFactory {
+
     @Override
-    public AbstractAircraft creatEnemy() {
+    public AbstractAircraft creatEnemy(double magnification) {
+        int mobHp = 30;
+        int mobSpeedY = 10;
         return new MobEnemy(
                 (int) (Math.random() * (Main.WINDOW_WIDTH - ImageManager.MOB_ENEMY_IMAGE.getWidth())) * 1,
                 (int) (Math.random() * Main.WINDOW_HEIGHT * 0.2) * 1,
                 0,
-                10,
-                30
+                (int) (mobSpeedY * magnification) * 1,
+                mobHp * 1
         );
     }
 }

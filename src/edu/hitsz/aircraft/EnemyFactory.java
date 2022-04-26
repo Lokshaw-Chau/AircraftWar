@@ -12,5 +12,5 @@ public interface EnemyFactory {
      *
      * @return AbstractAircraft 敌机对象
      */
-    public AbstractAircraft creatEnemy();
+    public AbstractAircraft creatEnemy(double magnification);
 }

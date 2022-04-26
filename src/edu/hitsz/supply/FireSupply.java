@@ -18,6 +18,7 @@ public class FireSupply extends AbstractSuppply {
     @Override
     public void takeEffect(HeroAircraft heroAircraft) {
         Runnable task = () -> {
+            System.out.println("FireSupply Active!");
             try {
                 synchronized (heroAircraft) {
                     heroAircraft.setShootNum(heroAircraft.getShootNum() + 1);
