@@ -1,0 +1,72 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Game{
+    # int difficultyIncreaseDuration
+    # int difficultyCount
+    # double magnification
+    # int bossScoreThreshold
+    # int eliteEnemyProbability
+    # int enemyMaxNumber
+    # int enemyShootDuration
+    # int heroShootDuration
+    + Game()
+    + action():void
+    # creatEnemyAircraft():void
+    + enemyShootAction():void
+    + heroShootAction():void
+    + bulletMoveAction():void
+    + aircraftMoveAction():void
+    + supppliesMoveAction():void
+    + crashCheckAction():void
+    + postProcessAction():void
+    + repaint():void
+    +{abstract} getBackgroundImage():BufferedImage
+    # setCreatBossFlag():boolean
+    #{abstract} setBossScoreThreshold():void
+    #{abstract} setMagnification():void
+    #{abstract} setEliteEnemyPobability():void
+    #{abstract} setCycleDuration():void
+    #{abstract} setEnemyMaxNumber():void
+    #{abstract} setEnemyShootDuration():void
+    #{abstract} setHeroShootDuration():void
+}
+
+class EasyGame{
+    + getBackgroundImage():BufferedImage
+    # setCreatBossFlag():boolean
+    # setBossScoreThreshold():void
+    # setMagnification():void
+    # setEliteEnemyPobability():void
+    # setCycleDuration():void
+    # setEnemyMaxNumber():void
+    # setEnemyShootDuration():void
+    # setHeroShootDuration():void
+}
+class NormalGame{
+    + getBackgroundImage():BufferedImage
+    # setCreatBossFlag():boolean
+    # setBossScoreThreshold():void
+    # setMagnification():void
+    # setEliteEnemyPobability():void
+    # setCycleDuration():void
+    # setEnemyMaxNumber():void
+    # setEnemyShootDuration():void
+    # setHeroShootDuration():void
+}
+class HardGame{
+    + getBackgroundImage():BufferedImage
+    # setCreatBossFlag():boolean
+    # setBossScoreThreshold():void
+    # setMagnification():void
+    # setEliteEnemyPobability():void
+    # setCycleDuration():void
+    # setEnemyMaxNumber():void
+    # setEnemyShootDuration():void
+    # setHeroShootDuration():void
+}
+
+Game <|-- EasyGame
+Game <|-- HardGame
+Game <|-- NormalGame
+@enduml
