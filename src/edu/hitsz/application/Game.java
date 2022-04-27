@@ -59,11 +59,11 @@ public abstract class Game extends JPanel {
     /**
      * 游戏难度相关的变量
      */
-    private int difficultyIncreaseDuration = 10000;
+    private final int difficultyIncreaseDuration = 10000;
     protected int difficultyCount = 0;
     protected double magnification = 1;
     protected int bossScoreThreshold = 1000;
-    protected int eliteEnemyProbability = 10;
+    protected int eliteEnemyProbability = 20;
     protected int enemyMaxNumber = 5;
     protected int enemyShootDuration = 600;
     protected int heroShootDuration = 600;

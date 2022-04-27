@@ -11,14 +11,14 @@ public class NormalGame extends Game {
     @Override
     protected void setMagnification() {
         if (magnification < 1.5) {
-            magnification = 1.25 + difficultyCount * 0.02;
+            magnification = 1.1 + difficultyCount * 0.05;
         }
     }
 
     @Override
     protected void setEliteEnemyPobability() {
         if (eliteEnemyProbability < 50) {
-            eliteEnemyProbability += 10;
+            eliteEnemyProbability += 5;
         }
     }
 
@@ -41,7 +41,9 @@ public class NormalGame extends Game {
 
     @Override
     protected void setHeroShootDuration() {
-        heroShootDuration = 800;
+        if (heroShootDuration >= 400) {
+            heroShootDuration = 800 - difficultyCount * 100;
+        }
     }
 
     @Override

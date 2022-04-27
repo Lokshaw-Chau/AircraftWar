@@ -9,8 +9,8 @@ import edu.hitsz.aircraft.HeroAircraft;
  * @date 2022/04/04
  */
 public class BloodSupply extends AbstractSuppply {
-    int maxHp = 1000;
-    int heal = 10;
+    int maxHp = HeroAircraft.heroAircraft.getMaxHp();
+    int heal = 20;
 
     public BloodSupply(int locationX, int locationY, int speedX, int speedY) {
         super(locationX, locationY, speedX, speedY);

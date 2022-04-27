@@ -47,6 +47,5 @@ public class EasyGame extends Game {
 
     @Override
     protected void setHeroShootDuration() {
-
     }
 }

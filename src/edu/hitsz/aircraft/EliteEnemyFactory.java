@@ -13,7 +13,7 @@ import edu.hitsz.strategy.EnemtStraightShoot;
 public class EliteEnemyFactory implements EnemyFactory {
     @Override
     public AbstractAircraft creatEnemy(double magnification) {
-        int eliteHp = 100;
+        int eliteHp = 50;
         int eliteSpeedY = 5;
         EliteEnemy eliteEnemy = new EliteEnemy(
                 (int) (Math.random() * (Main.WINDOW_WIDTH - ImageManager.BOSS_ENEMY_IMAGE.getWidth())) * 1,

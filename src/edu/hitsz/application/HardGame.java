@@ -10,15 +10,15 @@ public class HardGame extends Game {
 
     @Override
     protected void setMagnification() {
-        if (magnification < 1.5) {
-            magnification = 1.5 + difficultyCount * 0.02;
+        if (magnification < 2) {
+            magnification = 1.3 + difficultyCount * 0.05;
         }
     }
 
     @Override
     protected void setEliteEnemyPobability() {
         if (eliteEnemyProbability < 50) {
-            eliteEnemyProbability += 10;
+            eliteEnemyProbability += 5;
         }
     }
 
@@ -36,12 +36,15 @@ public class HardGame extends Game {
 
     @Override
     protected void setEnemyShootDuration() {
-        enemyShootDuration = 200;
+        enemyShootDuration = 400;
     }
 
     @Override
     protected void setHeroShootDuration() {
-        heroShootDuration = 1000;
+        if (heroShootDuration >= 300) {
+            heroShootDuration = 600 - difficultyCount * 100;
+        }
+
     }
 
     @Override

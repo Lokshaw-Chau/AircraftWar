@@ -13,7 +13,7 @@ public class MobEnemyFactory implements EnemyFactory {
 
     @Override
     public AbstractAircraft creatEnemy(double magnification) {
-        int mobHp = 30;
+        int mobHp = 25;
         int mobSpeedY = 10;
         return new MobEnemy(
                 (int) (Math.random() * (Main.WINDOW_WIDTH - ImageManager.MOB_ENEMY_IMAGE.getWidth())) * 1,

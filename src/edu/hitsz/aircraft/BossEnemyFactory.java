@@ -13,7 +13,7 @@ import edu.hitsz.strategy.EnemyScratteredShoot;
 public class BossEnemyFactory implements EnemyFactory {
     @Override
     public AbstractAircraft creatEnemy(double magnification) {
-        int bossHp = 2000;
+        int bossHp = 800;
         BossEnemy bossEnemy = new BossEnemy(
                 (int) (Math.random() * (Main.WINDOW_WIDTH - ImageManager.BOSS_ENEMY_IMAGE.getWidth())) * 1,
                 (int) (Math.random() * Main.WINDOW_HEIGHT * 0.2) * 1,

@@ -21,13 +21,13 @@ public class FireSupply extends AbstractSuppply {
             System.out.println("FireSupply Active!");
             try {
                 synchronized (heroAircraft) {
-                    heroAircraft.setShootNum(heroAircraft.getShootNum() + 1);
+                    heroAircraft.setShootNum(heroAircraft.getShootNum() + 2);
                     heroAircraft.setStategy(new HeroScratteredShoot());
                 }
                 Thread.sleep(5000);
                 synchronized (heroAircraft) {
-                    heroAircraft.setShootNum(heroAircraft.getShootNum() - 1);
-                    if (heroAircraft.getShootNum() == 2) {
+                    heroAircraft.setShootNum(heroAircraft.getShootNum() - 2);
+                    if (heroAircraft.getShootNum() == 1) {
                         heroAircraft.setStategy(new HeroStraightShoot());
                     } else {
                         heroAircraft.setStategy(new HeroScratteredShoot());

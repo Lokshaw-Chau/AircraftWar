@@ -2,10 +2,7 @@ package edu.hitsz.aircraft;
 
 import edu.hitsz.basic.AbstractFlyingObject;
 import edu.hitsz.bullet.BaseBullet;
-import edu.hitsz.supply.AbstractSuppply;
-import edu.hitsz.supply.BombSupplyFactory;
-import edu.hitsz.supply.FireSupplyFactory;
-import edu.hitsz.supply.SupplyFactory;
+import edu.hitsz.supply.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -46,14 +43,14 @@ public abstract class AbstractAircraft extends AbstractFlyingObject {
         List<AbstractSuppply> supplyList = new LinkedList<>();
         SupplyFactory supplyFactory = null;
         Random random = new Random();
-        int num = random.nextInt(4);
-        if (num == 1) {
-            //supplyFactory = new BloodSupplyFactory();
+        int num = random.nextInt(10);
+        if (num <= 3) {
+            supplyFactory = new BloodSupplyFactory();
         }
-        if (num >= 1) {
+        if (num == 5 || num == 6) {
             supplyFactory = new BombSupplyFactory();
         }
-        if (num == 1) {
+        if (num > 6) {
             supplyFactory = new FireSupplyFactory();
         }
         if (supplyFactory == null) {
