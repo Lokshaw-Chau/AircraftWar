@@ -357,7 +357,7 @@ public abstract class Game extends JPanel {
                 }
             }
         }
-        // Todo: 我方获得道具，道具生效
+        //我方获得道具，道具生效
         for (AbstractSuppply suppply : suppplies) {
             if (heroAircraft.crash(suppply)) {
                 //启动getsupply音效

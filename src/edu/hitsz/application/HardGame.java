@@ -41,7 +41,7 @@ public class HardGame extends Game {
 
     @Override
     protected void setHeroShootDuration() {
-        heroShootDuration = 10000;
+        heroShootDuration = 1000;
     }
 
     @Override
