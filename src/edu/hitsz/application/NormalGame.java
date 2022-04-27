@@ -11,7 +11,7 @@ public class NormalGame extends Game {
     @Override
     protected void setMagnification() {
         if (magnification < 1.5) {
-            magnification = 1 + difficultyCount * 0.02;
+            magnification = 1.25 + difficultyCount * 0.02;
         }
     }
 

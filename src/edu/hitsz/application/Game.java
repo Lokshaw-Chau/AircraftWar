@@ -76,6 +76,7 @@ public abstract class Game extends JPanel {
         enemyBullets = new LinkedList<>();
         suppplies = new LinkedList<>();
         //设置基本变量
+        setMagnification();
         setBossScoreThreshold();
         setEnemyMaxNumber();
         setEnemyShootDuration();
