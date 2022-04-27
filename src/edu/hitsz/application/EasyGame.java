@@ -38,4 +38,15 @@ public class EasyGame extends Game {
     @Override
     protected void setEnemyMaxNumber() {
     }
+
+    @Override
+    protected void setEnemyShootDuration() {
+
+
+    }
+
+    @Override
+    protected void setHeroShootDuration() {
+
+    }
 }

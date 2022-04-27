@@ -35,6 +35,16 @@ public class HardGame extends Game {
     }
 
     @Override
+    protected void setEnemyShootDuration() {
+        enemyShootDuration = 200;
+    }
+
+    @Override
+    protected void setHeroShootDuration() {
+        heroShootDuration = 10000;
+    }
+
+    @Override
     public BufferedImage getBackgroundImage() {
         return ImageManager.BACKGROUND_IMAGE_HARD;
     }

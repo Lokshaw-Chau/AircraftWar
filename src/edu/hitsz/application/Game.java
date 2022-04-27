@@ -65,6 +65,8 @@ public abstract class Game extends JPanel {
     protected int bossScoreThreshold = 1000;
     protected int eliteEnemyProbability = 10;
     protected int enemyMaxNumber = 5;
+    protected int enemyShootDuration = 600;
+    protected int heroShootDuration = 600;
 
     public Game() {
         heroAircraft = HeroAircraft.creatHeroAircraft();
@@ -76,6 +78,8 @@ public abstract class Game extends JPanel {
         //设置基本变量
         setBossScoreThreshold();
         setEnemyMaxNumber();
+        setEnemyShootDuration();
+        setHeroShootDuration();
         //启动背景音乐线程
         bgmMusicThread = new MusicThread("src/videos/bgm.wav");
         bgmMusicThread.setLoop(true);
@@ -122,10 +126,8 @@ public abstract class Game extends JPanel {
                 }
             }
             // 飞机射出子弹
-            if (time % 600 == 0) {
-                shootAction();
-            }
-
+            enemyShootAction();
+            heroShootAction();
 
             // 子弹移动
             bulletsMoveAction();
@@ -187,14 +189,21 @@ public abstract class Game extends JPanel {
         }
     }
 
-    private void shootAction() {
-        //敌机射击
-        for (AbstractAircraft enemy : enemyAircrafts) {
-            enemyBullets.addAll(enemy.shoot());
+    private void enemyShootAction() {
+        if (time % enemyShootDuration == 0) {
+            //敌机射击
+            for (AbstractAircraft enemy : enemyAircrafts) {
+                enemyBullets.addAll(enemy.shoot());
+            }
         }
-        // 英雄射击
-        heroBullets.addAll(heroAircraft.shoot());
-        new MusicThread("src/videos/bullet.wav").start();
+    }
+
+    private void heroShootAction() {
+        if (time % heroShootDuration == 0) {
+            // 英雄射击
+            heroBullets.addAll(heroAircraft.shoot());
+            new MusicThread("src/videos/bullet.wav").start();
+        }
     }
 
     private void bulletsMoveAction() {
@@ -221,7 +230,7 @@ public abstract class Game extends JPanel {
     /**
      * 创建敌机：
      */
-    private void creatEnemyAircraft() {
+    private final void creatEnemyAircraft() {
         if (enemyAircrafts.size() < enemyMaxNumber) {
             Random random = new Random();
             int number = random.nextInt(100);
@@ -276,6 +285,16 @@ public abstract class Game extends JPanel {
      * 子类通过重载该方法决定最大敌机个数
      */
     protected abstract void setEnemyMaxNumber();
+
+    /**
+     * 子类通过重载该方法决定敌机射击的周期
+     */
+    protected abstract void setEnemyShootDuration();
+
+    /**
+     * 子类通过重载该方法决定英雄机射击的周期
+     */
+    protected abstract void setHeroShootDuration();
 
     /**
      * 碰撞检测：
