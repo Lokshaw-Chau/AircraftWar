@@ -5,9 +5,14 @@ import edu.hitsz.application.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+/**
+ * 选择难度的图形界面
+ *
+ * @author ZLX
+ * @date 2022/4/28
+ */
 public class StartPanel {
-    private static Game game;
+    private static AbstractGame game;
     private static boolean musicOn = true;
     public JPanel mainPanel;
     private JCheckBox musicCheckBox;
@@ -56,12 +61,8 @@ public class StartPanel {
         return musicOn;
     }
 
-    public static Game getGame() {
+    public static AbstractGame getGame() {
         return game;
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 
 }

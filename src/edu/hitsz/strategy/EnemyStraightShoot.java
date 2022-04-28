@@ -5,8 +5,13 @@ import edu.hitsz.bullet.EnemyBullet;
 
 import java.util.LinkedList;
 import java.util.List;
-
-public class EnemtStraightShoot implements Strategy {
+/**
+ * 敌机的直射策略
+ *
+ * @author ZLX
+ * @date 2022/4/28
+ */
+public class EnemyStraightShoot implements Strategy {
     @Override
     public List<BaseBullet> doShoot(int locationX, int locationY, int speed, int direction, int shootNum, int power) {
         List<BaseBullet> res = new LinkedList<>();

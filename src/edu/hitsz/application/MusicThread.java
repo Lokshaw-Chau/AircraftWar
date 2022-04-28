@@ -4,11 +4,18 @@ import edu.hitsz.StartPanel;
 
 import javax.sound.sampled.*;
 import java.io.*;
-
+/**
+ * 音乐线程
+ *
+ * @author ZLX
+ * @date 2022/4/28
+ */
 public class MusicThread extends Thread {
 
 
-    //音频文件名
+    /**
+     * 音频文件名
+     */
     private String filename;
     private AudioFormat audioFormat;
     private byte[] samples;

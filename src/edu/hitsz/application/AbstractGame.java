@@ -19,11 +19,12 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 游戏主面板，游戏启动
+ * 游戏主面板，游戏的模板类，游戏启动
+ * 所有难度的游戏都继承自这个抽象类
  *
  * @author hitsz
  */
-public abstract class Game extends JPanel {
+public abstract class AbstractGame extends JPanel {
 
     private int backGroundTop = 0;
     /**
@@ -68,7 +69,7 @@ public abstract class Game extends JPanel {
     protected int enemyShootDuration = 600;
     protected int heroShootDuration = 600;
 
-    public Game() {
+    public AbstractGame() {
         heroAircraft = HeroAircraft.creatHeroAircraft();
 
         enemyAircrafts = new LinkedList<>();
@@ -119,7 +120,7 @@ public abstract class Game extends JPanel {
                 //提高敌机数值的倍率
                 setMagnification();
                 //提高精英机产生的概率
-                setEliteEnemyPobability();
+                setEliteEnemyProbability();
                 //提高敌机产生的频率
                 setCycleDuration();
                 if (!(this instanceof EasyGame)) {
@@ -153,7 +154,7 @@ public abstract class Game extends JPanel {
                 // 游戏结束
                 executorService.shutdown();
                 gameOverFlag = true;
-                System.out.println("Game Over!");
+                System.out.println("AbstractGame Over!");
                 //打断所有bgm线程并启动gameover线程
                 bgmMusicThread.setRunning(false);
                 if (!bossNotExist) {
@@ -166,11 +167,6 @@ public abstract class Game extends JPanel {
                 }
             }
         };
-
-        /**
-         * 以固定延迟时间进行执行
-         * 本次任务执行完成后，需要延迟设定的延迟时间，才会执行新的任务
-         */
         executorService.scheduleWithFixedDelay(task, timeInterval, timeInterval, TimeUnit.MILLISECONDS);
 
     }
@@ -179,6 +175,14 @@ public abstract class Game extends JPanel {
     //      Action 各部分
     //***********************
 
+    /**
+     * 控制产生敌机的周期
+     *
+     * @return boolean
+     * @author ZLX
+     * @date 2022/4/27
+     * @param:
+     */
     private boolean timeCountAndNewCycleJudge() {
         cycleTime += timeInterval;
         if (cycleTime >= cycleDuration && cycleTime - timeInterval < cycleTime) {
@@ -190,6 +194,13 @@ public abstract class Game extends JPanel {
         }
     }
 
+    /**
+     * 敌机射击
+     *
+     * @author ZLX
+     * @date 2022/4/27
+     * @param:
+     */
     private void enemyShootAction() {
         if (time % enemyShootDuration == 0) {
             //敌机射击
@@ -199,6 +210,14 @@ public abstract class Game extends JPanel {
         }
     }
 
+    /**
+     * 英雄机射击
+     *
+     * @return void
+     * @author ZLX
+     * @date 2022/4/27
+     * @param:
+     */
     private void heroShootAction() {
         if (time % heroShootDuration == 0) {
             // 英雄射击
@@ -229,7 +248,10 @@ public abstract class Game extends JPanel {
     }
 
     /**
-     * 创建敌机：
+     * 创造敌机的模板方法
+     * @author ZLX
+     * @date 2022/4/27
+     * @param:
      */
     private final void creatEnemyAircraft() {
         if (enemyAircrafts.size() < enemyMaxNumber) {
@@ -257,6 +279,10 @@ public abstract class Game extends JPanel {
 
     /**
      * 子类重载该方法可以取消产生boss
+     * @author ZLX
+     * @date 2022/4/27
+     * @param:
+     * @return boolean
      */
     public boolean setCreatBossFlag() {
         return true;
@@ -264,36 +290,58 @@ public abstract class Game extends JPanel {
 
     /**
      * 子类通过重载该方法设置产生boss机的分数线
+     * @author ZLX
+     * @date 2022/4/27
+     * @param:
      */
     public abstract void setBossScoreThreshold();
 
     /**
      * 子类通过重载该方法决定敌机的强度随时间变化的倍率
+     * @author ZLX
+     * @date 2022/4/27
+     * @param:
      */
     protected abstract void setMagnification();
 
     /**
      * 子类通过重载该方法决定精英机产生的概率
+     *
+     * @author ZLX
+     * @date 2022/4/27
+     * @param:
      */
-    protected abstract void setEliteEnemyPobability();
+    protected abstract void setEliteEnemyProbability();
 
     /**
      * 子类通过重载该方法决定敌机产生的频率
+     * @author ZLX
+     * @date 2022/4/27
+     * @param:
      */
     protected abstract void setCycleDuration();
 
     /**
      * 子类通过重载该方法决定最大敌机个数
+     * @author ZLX
+     * @date 2022/4/27
+     * @param:
      */
     protected abstract void setEnemyMaxNumber();
 
     /**
      * 子类通过重载该方法决定敌机射击的周期
+     * @author ZLX
+     * @date 2022/4/27
+     * @param: null
      */
     protected abstract void setEnemyShootDuration();
 
     /**
      * 子类通过重载该方法决定英雄机射击的周期
+     * @author ZLX
+     * @date 2022/4/27
+     * @param:
      */
     protected abstract void setHeroShootDuration();
 
@@ -304,7 +352,7 @@ public abstract class Game extends JPanel {
      * 3. 英雄获得补给
      */
     private void crashCheckAction() {
-        // TODO 敌机子弹攻击英雄
+        //敌机子弹攻击英雄
         for (BaseBullet bullet : enemyBullets) {
             if (bullet.notValid()) {
                 continue;
@@ -401,6 +449,10 @@ public abstract class Game extends JPanel {
 
     /**
      * 子类重载该方法以更改背景图片
+     * @author ZLX
+     * @date 2022/4/27
+     * @param:
+     * @return java.awt.image.BufferedImage
      */
     public abstract BufferedImage getBackgroundImage();
 

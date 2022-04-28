@@ -1,5 +1,10 @@
 package edu.hitsz.data;
-
+/**
+ * 单次游戏的记录
+ *
+ * @author ZLX
+ * @date 2022/4/28
+ */
 public class HistoryRecord {
     private int rank;
     private String playid;

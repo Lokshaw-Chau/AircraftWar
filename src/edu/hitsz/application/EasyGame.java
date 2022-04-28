@@ -3,9 +3,12 @@ package edu.hitsz.application;
 import java.awt.image.BufferedImage;
 
 /**
+ * 简单模式的游戏
+ *
  * @author ZLX
+ * @date 2022/4/28
  */
-public class EasyGame extends Game {
+public class EasyGame extends AbstractGame {
     @Override
     public BufferedImage getBackgroundImage() {
         return ImageManager.BACKGROUND_IMAGE_EASY;
@@ -26,8 +29,7 @@ public class EasyGame extends Game {
     }
 
     @Override
-    protected void setEliteEnemyPobability() {
-
+    protected void setEliteEnemyProbability() {
     }
 
     @Override
@@ -41,8 +43,6 @@ public class EasyGame extends Game {
 
     @Override
     protected void setEnemyShootDuration() {
-
-
     }
 
     @Override

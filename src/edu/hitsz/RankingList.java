@@ -10,7 +10,12 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-
+/**
+ * 排行榜的图形界面
+ *
+ * @author ZLX
+ * @date 2022/4/28
+ */
 public class RankingList {
     public JPanel mainPanel;
     private JTable rankTable;

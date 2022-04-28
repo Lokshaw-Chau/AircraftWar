@@ -5,7 +5,12 @@ import edu.hitsz.bullet.EnemyBullet;
 
 import java.util.LinkedList;
 import java.util.List;
-
+/**
+ * 敌机的散射策略
+ *
+ * @author ZLX
+ * @date 2022/4/28
+ */
 public class EnemyScratteredShoot implements Strategy {
 
     @Override

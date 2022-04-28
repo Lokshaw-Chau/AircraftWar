@@ -1,7 +1,7 @@
 package edu.hitsz.supply;
 
 /**
- * BloodSupplyFactory
+ * 创建血量补给的工厂
  *
  * @author Lau-Shaw Chau
  * @date 2022/04/04

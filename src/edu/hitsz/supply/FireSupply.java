@@ -1,6 +1,6 @@
 package edu.hitsz.supply;
 /**
- * FireSupply
+ * 火力道具
  *
  * @author Lau-Shaw Chau
  * @date 2022/04/20

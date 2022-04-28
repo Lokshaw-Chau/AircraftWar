@@ -1,7 +1,7 @@
 package edu.hitsz.supply;
 
 /**
- * SupplyFactory
+ * 所有道具工厂的接口
  *
  * @author Lau-Shaw Chau
  * @date 2022/04/04

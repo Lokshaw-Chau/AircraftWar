@@ -2,10 +2,10 @@ package edu.hitsz.aircraft;
 
 import edu.hitsz.application.ImageManager;
 import edu.hitsz.application.Main;
-import edu.hitsz.strategy.EnemtStraightShoot;
+import edu.hitsz.strategy.EnemyStraightShoot;
 
 /**
- * EliteEnemyFactory
+ * 创建精英机的工厂类
  *
  * @author Lau-Shaw Chau
  * @date 2022/04/04
@@ -22,7 +22,7 @@ public class EliteEnemyFactory implements EnemyFactory {
                 (int) (eliteSpeedY * magnification) * 1,
                 (int) (eliteHp * magnification) * 1
         );
-        eliteEnemy.setStrategy(new EnemtStraightShoot());
+        eliteEnemy.setStrategy(new EnemyStraightShoot());
         return eliteEnemy;
     }
 }

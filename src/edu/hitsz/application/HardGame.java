@@ -1,8 +1,13 @@
 package edu.hitsz.application;
 
 import java.awt.image.BufferedImage;
-
-public class HardGame extends Game {
+/**
+ * 困难模式的游戏
+ *
+ * @author ZLX
+ * @date 2022/4/28
+ */
+public class HardGame extends AbstractGame {
     @Override
     public void setBossScoreThreshold() {
         bossScoreThreshold = 500;
@@ -10,21 +15,24 @@ public class HardGame extends Game {
 
     @Override
     protected void setMagnification() {
-        if (magnification < 2) {
+        double magnificationLimit = 2;
+        if (magnification < magnificationLimit) {
             magnification = 1.3 + difficultyCount * 0.05;
         }
     }
 
     @Override
-    protected void setEliteEnemyPobability() {
-        if (eliteEnemyProbability < 50) {
+    protected void setEliteEnemyProbability() {
+        int eliteEnemuProbabilityLimit = 50;
+        if (eliteEnemyProbability < eliteEnemuProbabilityLimit) {
             eliteEnemyProbability += 5;
         }
     }
 
     @Override
     protected void setCycleDuration() {
-        if (cycleDuration > 300) {
+        int cycleDurationLimit = 300;
+        if (cycleDuration > cycleDurationLimit) {
             cycleDuration -= 50;
         }
     }
@@ -41,10 +49,10 @@ public class HardGame extends Game {
 
     @Override
     protected void setHeroShootDuration() {
-        if (heroShootDuration >= 300) {
+        int heroShootDurationLimit = 300;
+        if (heroShootDuration >= heroShootDurationLimit) {
             heroShootDuration = 600 - difficultyCount * 100;
         }
-
     }
 
     @Override

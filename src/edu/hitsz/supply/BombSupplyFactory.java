@@ -1,7 +1,7 @@
 package edu.hitsz.supply;
 
 /**
- * BombSupplyFactory
+ * 创建炸弹道具的工厂
  *
  * @author Lau-Shaw Chau
  * @date 2022/04/04

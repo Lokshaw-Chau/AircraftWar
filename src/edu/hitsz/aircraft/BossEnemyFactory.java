@@ -5,7 +5,7 @@ import edu.hitsz.application.Main;
 import edu.hitsz.strategy.EnemyScratteredShoot;
 
 /**
- * BossEnemyFactory
+ * 创建boss机的工厂
  *
  * @author Lau-Shaw Chau
  * @date 2022/04/04

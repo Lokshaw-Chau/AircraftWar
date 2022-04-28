@@ -5,7 +5,7 @@ import edu.hitsz.application.Main;
 import edu.hitsz.basic.AbstractFlyingObject;
 
 /**
- * AbstractSupply
+ * 所有补给类的抽象父类
  *
  * @author Lau-Shaw Chau
  * @date 2022/04/04

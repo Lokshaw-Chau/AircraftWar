@@ -4,7 +4,7 @@ import edu.hitsz.application.ImageManager;
 import edu.hitsz.application.Main;
 
 /**
- * MobEnemyFactory
+ * 创建普通敌机的工厂
  *
  * @author Lau-Shaw Chau
  * @date 2022/04/04

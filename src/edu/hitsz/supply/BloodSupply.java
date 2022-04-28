@@ -3,7 +3,7 @@ package edu.hitsz.supply;
 import edu.hitsz.aircraft.HeroAircraft;
 
 /**
- * BloodSupply
+ * 血量补给
  *
  * @author Lau-Shaw Chau
  * @date 2022/04/04

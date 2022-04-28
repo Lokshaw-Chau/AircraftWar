@@ -1,8 +1,13 @@
 package edu.hitsz.application;
 
 import java.awt.image.BufferedImage;
-
-public class NormalGame extends Game {
+/**
+ * 普通难度的游戏
+ *
+ * @author ZLX
+ * @date 2022/4/28
+ */
+public class NormalGame extends AbstractGame {
     @Override
     public void setBossScoreThreshold() {
         bossScoreThreshold = 1000;
@@ -10,21 +15,24 @@ public class NormalGame extends Game {
 
     @Override
     protected void setMagnification() {
-        if (magnification < 1.5) {
+        double magnificationLimit = 1.5;
+        if (magnification < magnificationLimit) {
             magnification = 1.1 + difficultyCount * 0.05;
         }
     }
 
     @Override
-    protected void setEliteEnemyPobability() {
-        if (eliteEnemyProbability < 50) {
+    protected void setEliteEnemyProbability() {
+        int eliteEnemuProbabilityLimit = 50;
+        if (eliteEnemyProbability < eliteEnemuProbabilityLimit) {
             eliteEnemyProbability += 5;
         }
     }
 
     @Override
     protected void setCycleDuration() {
-        if (cycleDuration > 300) {
+        int cycleDurationLimit = 300;
+        if (cycleDuration > cycleDurationLimit) {
             cycleDuration -= 50;
         }
     }
@@ -41,7 +49,8 @@ public class NormalGame extends Game {
 
     @Override
     protected void setHeroShootDuration() {
-        if (heroShootDuration >= 400) {
+        int heroShootDurationLimit = 400;
+        if (heroShootDuration >= heroShootDurationLimit) {
             heroShootDuration = 800 - difficultyCount * 100;
         }
     }
