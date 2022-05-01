@@ -7,7 +7,7 @@ import edu.hitsz.strategy.Strategy;
 import java.util.List;
 
 /**
- * BossEnemy
+ * boss机
  *
  * @author Lau-Shaw Chau
  * @date 2022/04/04

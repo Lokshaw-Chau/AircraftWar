@@ -1,28 +1,24 @@
 package edu.hitsz.supply;
 
-import edu.hitsz.aircraft.HeroAircraft;
 import edu.hitsz.application.Main;
 import edu.hitsz.basic.AbstractFlyingObject;
 
 /**
- * AbstractSupply
+ * 所有补给类的抽象父类
  *
  * @author Lau-Shaw Chau
  * @date 2022/04/04
  */
-public abstract class AbstractSuppply extends AbstractFlyingObject {
+public abstract class AbstractSupply extends AbstractFlyingObject {
 
-    public AbstractSuppply(int locationX, int locationY, int speedX, int speedY) {
+    public AbstractSupply(int locationX, int locationY, int speedX, int speedY) {
         super(locationX, locationY, speedX, speedY);
     }
 
     /**
      * 对传入的heroAircraft变量产生补给的效果
-     *
-     * @param heroAircraft 英雄机对象
-     * @return heroAircraft 英雄机对象
      */
-    abstract public void takeEffect(HeroAircraft heroAircraft);
+    abstract public void takeEffect();
 
     @Override
     public void forward() {

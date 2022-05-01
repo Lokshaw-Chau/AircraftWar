@@ -18,11 +18,17 @@ public class HeroAircraft extends AbstractAircraft {
     /**
      * 攻击方式
      */
-    public static HeroAircraft heroAircraft = new HeroAircraft(0, 0, 0, 0, 0);
+    private int score = 0;
+    public static HeroAircraft heroAircraft = new HeroAircraft(
+            Main.WINDOW_WIDTH / 2,
+            Main.WINDOW_HEIGHT - ImageManager.HERO_IMAGE.getHeight(),
+            0,
+            0,
+            500);
     /**
      * 子弹一次发射数量
      */
-    private int shootNum = 2;
+    private int shootNum = 1;
     /**
      * 子弹伤害
      */
@@ -32,6 +38,10 @@ public class HeroAircraft extends AbstractAircraft {
      */
     private int direction = -1;
     private Strategy strategy;
+    /**
+     * 最大生命值
+     */
+    private int maxHp = 500;
 
     /**
      * @param locationX 英雄机位置x坐标
@@ -42,15 +52,22 @@ public class HeroAircraft extends AbstractAircraft {
      */
     private HeroAircraft(int locationX, int locationY, int speedX, int speedY, int hp) {
         super(locationX, locationY, speedX, speedY, hp);
+        this.setStategy(new HeroStraightShoot());
     }
 
-    public static HeroAircraft creatHeroAircraft() {
-        heroAircraft.hp = 1000;
-        heroAircraft.locationX = Main.WINDOW_WIDTH / 2;
-        heroAircraft.locationY = Main.WINDOW_HEIGHT - ImageManager.HERO_IMAGE.getHeight();
-        heroAircraft.speedX = 0;
-        heroAircraft.speedY = 0;
-        heroAircraft.setStategy(new HeroStraightShoot());
+    public int getScore() {
+        return score;
+    }
+
+    public int getMaxHp() {
+        return maxHp;
+    }
+
+    public void addScore(int num) {
+        score += num;
+    }
+
+    public static HeroAircraft getInstance() {
         return heroAircraft;
     }
 

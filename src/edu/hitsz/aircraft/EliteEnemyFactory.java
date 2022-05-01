@@ -2,25 +2,27 @@ package edu.hitsz.aircraft;
 
 import edu.hitsz.application.ImageManager;
 import edu.hitsz.application.Main;
-import edu.hitsz.strategy.EnemtStraightShoot;
+import edu.hitsz.strategy.EnemyStraightShoot;
 
 /**
- * EliteEnemyFactory
+ * 创建精英机的工厂类
  *
  * @author Lau-Shaw Chau
  * @date 2022/04/04
  */
 public class EliteEnemyFactory implements EnemyFactory {
     @Override
-    public AbstractAircraft creatEnemy() {
+    public AbstractAircraft creatEnemy(double magnification) {
+        int eliteHp = 50;
+        int eliteSpeedY = 5;
         EliteEnemy eliteEnemy = new EliteEnemy(
-                (int) (Math.random() * (Main.WINDOW_WIDTH - ImageManager.ELITE_ENEMY_IMAGE.getWidth())) * 1,
+                (int) (Math.random() * (Main.WINDOW_WIDTH - ImageManager.BOSS_ENEMY_IMAGE.getWidth())) * 1,
                 (int) (Math.random() * Main.WINDOW_HEIGHT * 0.2) * 1,
-                (int) ((Math.random() - 0.5) * 5) * 1,
-                5,
-                60
+                (int) ((Math.random() - 0.5) * 10 * magnification) * 1,
+                (int) (eliteSpeedY * magnification) * 1,
+                (int) (eliteHp * magnification) * 1
         );
-        eliteEnemy.setStrategy(new EnemtStraightShoot());
+        eliteEnemy.setStrategy(new EnemyStraightShoot());
         return eliteEnemy;
     }
 }

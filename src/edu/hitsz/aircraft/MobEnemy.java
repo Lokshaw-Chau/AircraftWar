@@ -32,4 +32,9 @@ public class MobEnemy extends AbstractAircraft {
         return new LinkedList<>();
     }
 
+    @Override
+    public void explode() {
+        vanish();
+        HeroAircraft.getInstance().addScore(10);
+    }
 }

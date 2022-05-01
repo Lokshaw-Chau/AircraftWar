@@ -20,7 +20,7 @@ class FireSupply{
     - Strategy strategy
     - {static} HeroAircraft heroAircraft
     - HeroAircraft(int locationX, int locationY, int speedX, int speedY, int hp):void
-    + {static}creatHeroAircraft():HeroAircraft
+    + {static}getInstance():HeroAircraft
     + setStrategy():void
     + forward():void
     + shoot():List<Bullet>

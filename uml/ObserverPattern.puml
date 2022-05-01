@@ -1,0 +1,38 @@
+@startuml
+class BombSupply{
+    + takeEffect():void
+}
+BombSupply ..>BombSupplyPublisher
+class BombSupplyPublisher{
+    - ArrayList<AbstractFlyingObject> flyingObjectList
+    -{static} BombSupplyPublisher boomSupplyPublisher
+    - BombSupplyPublisher()
+    + addFlyingObject(AbstactFlyingObject flyingObject):void
+    + removeFlyingObject(AbstactFlyingObject subscriber):void
+    + {static}getInstance():BombSupplyPublisher
+    + induceExplosion():void
+}
+BombSupplyPublisher o--> AbstractFlyingObject
+Abstract AbstractFlyingObject{
+    + vanish() :void
+    + explode() :void
+    }
+class MobEnemy {
+    + vanish() :void
+    + explode() :void
+}
+
+class EliteEnemy{
+    + vanish() :void
+    + explode() :void
+}
+
+class EnemyBullet {
+    + vanish() :void
+    + explode() :void
+}
+
+AbstractFlyingObject<|--EliteEnemy
+AbstractFlyingObject<|--MobEnemy
+AbstractFlyingObject<|--EnemyBullet
+@enduml

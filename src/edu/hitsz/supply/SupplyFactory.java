@@ -1,7 +1,7 @@
 package edu.hitsz.supply;
 
 /**
- * SupplyFactory
+ * 所有道具工厂的接口
  *
  * @author Lau-Shaw Chau
  * @date 2022/04/04
@@ -14,5 +14,5 @@ public interface SupplyFactory {
      * @param locationY 补给的y坐标
      * @return AbstractSupply 补给对象
      */
-    public AbstractSuppply creatSupply(int locationX, int locationY);
+    public AbstractSupply creatSupply(int locationX, int locationY);
 }

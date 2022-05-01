@@ -5,19 +5,24 @@ import edu.hitsz.application.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+/**
+ * 选择难度的图形界面
+ *
+ * @author ZLX
+ * @date 2022/4/28
+ */
 public class StartPanel {
-    private static Game game;
+    private static AbstractGame game;
     private static boolean musicOn = true;
-    public JPanel MainPanel;
-    private JCheckBox MusicCheckBox;
-    private JButton EasyModeButton;
-    private JButton NormalModeButton;
-    private JButton HardModeButton;
-    private JPanel TopPanel;
+    public JPanel mainPanel;
+    private JCheckBox musicCheckBox;
+    private JButton easyModeButton;
+    private JButton normalModeButton;
+    private JButton hardModeButton;
+    private JPanel topPanel;
 
     public StartPanel() {
-        EasyModeButton.addActionListener(new ActionListener() {
+        easyModeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 synchronized (Main.GAMELOCK) {
@@ -26,7 +31,7 @@ public class StartPanel {
                 }
             }
         });
-        NormalModeButton.addActionListener(new ActionListener() {
+        normalModeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 synchronized (Main.GAMELOCK) {
@@ -35,7 +40,7 @@ public class StartPanel {
                 }
             }
         });
-        HardModeButton.addActionListener(new ActionListener() {
+        hardModeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 synchronized (Main.GAMELOCK) {
@@ -44,10 +49,14 @@ public class StartPanel {
                 }
             }
         });
-        MusicCheckBox.addActionListener(new ActionListener() {
+        musicCheckBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                musicOn = false;
+                if (musicCheckBox.isSelected()) {
+                    musicOn = false;
+                } else {
+                    musicOn = true;
+                }
             }
         });
     }
@@ -56,12 +65,8 @@ public class StartPanel {
         return musicOn;
     }
 
-    public static Game getGame() {
+    public static AbstractGame getGame() {
         return game;
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 
 }

@@ -39,18 +39,21 @@ public abstract class AbstractAircraft extends AbstractFlyingObject {
         return hp;
     }
 
-    public List<AbstractSuppply> makeSupply() {
-        List<AbstractSuppply> supplyList = new LinkedList<>();
+    public List<AbstractSupply> makeSupply() {
+        List<AbstractSupply> supplyList = new LinkedList<>();
         SupplyFactory supplyFactory = null;
         Random random = new Random();
-        int num = random.nextInt(4);
-        if (num == 2) {
+        int bloodSupplyProbability = 30;
+        int bombSupplyProbability = 20;
+        int fireSupplyProbability = 30;
+        int num = random.nextInt(100);
+        if (num <= bloodSupplyProbability) {
             supplyFactory = new BloodSupplyFactory();
         }
-        if (num == 3) {
+        if (num > bloodSupplyProbability && num <= bloodSupplyProbability + bombSupplyProbability) {
             supplyFactory = new BombSupplyFactory();
         }
-        if (num == 1) {
+        if (num > bloodSupplyProbability + bombSupplyProbability && num <= bloodSupplyProbability + bombSupplyProbability + fireSupplyProbability) {
             supplyFactory = new FireSupplyFactory();
         }
         if (supplyFactory == null) {

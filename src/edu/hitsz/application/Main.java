@@ -2,6 +2,7 @@ package edu.hitsz.application;
 
 import edu.hitsz.RankingList;
 import edu.hitsz.StartPanel;
+import edu.hitsz.aircraft.HeroAircraft;
 import edu.hitsz.data.RecordDaompl;
 
 import javax.swing.*;
@@ -34,9 +35,9 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         StartPanel startPanel = new StartPanel();
         //打开起始页
-        frame.add(startPanel.MainPanel);
+        frame.add(startPanel.mainPanel);
         frame.setVisible(true);
-        Game game;
+        AbstractGame game;
         //选择难度后进入游戏
         synchronized (Main.GAMELOCK) {
             GAMELOCK.wait();
@@ -49,16 +50,18 @@ public class Main {
         //游戏结束后获取分数进入排行榜
         synchronized (Main.RANKLOCK) {
             RANKLOCK.wait();
-            int score = game.getScore();
+            int score = HeroAircraft.getInstance().getScore();
             //维护数据
             //创建访问记录的对象
             RecordDaompl recordDaompl = RecordDaompl.getInstance();
             //制作本次游戏的记录并将本次记录添加到历史记录中
             String prompt = "你本次的成绩是" + score + "，请输入你的用户名以保存记录（请不要输入\",\"\"\\n\"等字符）";
-            String ID = JOptionPane.showInputDialog(null, prompt, "Default");
-            recordDaompl.addRecord(recordDaompl.makeRecord(score, ID));
-            //进行排序
-            recordDaompl.sortByScore();
+            String id = JOptionPane.showInputDialog(null, prompt, "Default");
+            if (id != null) {
+                recordDaompl.addRecord(recordDaompl.makeRecord(score, id));
+                //进行排序
+                recordDaompl.sortByScore();
+            }
             RankingList rankingList = new RankingList();
             frame.getContentPane().removeAll();
             frame.add(rankingList.mainPanel);

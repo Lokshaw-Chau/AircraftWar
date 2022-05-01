@@ -7,7 +7,7 @@ import edu.hitsz.strategy.Strategy;
 import java.util.List;
 
 /**
- * EliteEnemy
+ * 精英机
  *
  * @author Lau-Shaw Chau
  * @date 2022/04/04
@@ -58,4 +58,9 @@ public class EliteEnemy extends AbstractAircraft {
         );
     }
 
+    @Override
+    public void explode() {
+        vanish();
+        HeroAircraft.getInstance().addScore(30);
+    }
 }

@@ -3,10 +3,13 @@ class HeroAircraft {
     - int shootNum
     - int power
     - int direction
+    - int score
+    - Strategy strategy
     - {static} HeroAircraft heroAircraft
     - HeroAircraft(int locationX, int locationY, int speedX, int speedY, int hp):void
-    + {static}creatHeroAircraft():HeroAircraft
     + forward():void
+    + {static}getInstance():HeroAircraft
     + shoot():List<Bullet>
+    + setStrategy():strategy
 }
 @enduml

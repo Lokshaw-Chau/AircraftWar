@@ -34,6 +34,7 @@ abstract class AbstractAircraft
     + getHp():int
     + makeSupply():AbstractSupply
     + {abstract} shoot():List<Bullet>
+    + makeSupply():List<AbstractSupply>
  }
 
 abstract class BaseBullet
@@ -47,7 +48,7 @@ abstract class BaseBullet
 abstract class AbstractSupply
 {
     + AbstractSupply(int locationX, int locationY, int speedX, int speedY):void
-    + takeEffect(HeroAircraft heroAircraft):void
+    + takeEffect():void
 }
 
 AbstractFlyingObject <|-- AbstractAircraft
@@ -70,9 +71,11 @@ class HeroAircraft {
     - int shootNum
     - int power
     - int direction
+    - int score
+    - Strategy strategy
     - {static} HeroAircraft heroAircraft
     - HeroAircraft(int locationX, int locationY, int speedX, int speedY, int hp):void
-    + {static}creatHeroAircraft():HeroAircraft
+    + {static}getInstance():HeroAircraft
     + forward():void
     + shoot():List<Bullet>
 }
@@ -81,23 +84,29 @@ class MobEnemy {
     + MobEnemy(int locationX, int locationY, int speedX, int speedY, int hp):void
     + forward():void
     + shoot():List<Bullet>
+    + explode():void
 }
 
 class EliteEnemy{
     - int shootNum
     - int power
     - int direction
+    - Strategy strategy
     + EliteEnemy(int locationX, int locationY, int speedX, int speedY, int hp):void
     + forward():void
     + shoot():List<Bullet>
+    + setStrategy(Strategy strategy):void
+    + explode():void
 }
 
 class BossEnemy{
     - int shootNum
     - int power
     - int direction
+    - private Strategy strategy
     + BossEnemy(int locationX, int locationY, int speedX, int speedY, int hp):void
     + forward():void
+    + setStrategy():void
     + shoot():List<Bullet>
 }
 
@@ -112,20 +121,22 @@ class EnemyBullet {
 }
 
 class BloodSupply{
+    + int heal
+    + int maxHp
     + BloodSupply(int locationX, int locationY,
     int speedX, int speedY):void
-    + takeEffect(HeroAircraft heroAircraft):void
+    + takeEffect():void
 }
 
 class BombSupply{
     + BombSupply(int locationX, int locationY,
     int speedX, int speedY):void
-    + takeEffect(HeroAircraft heroAircraft):void
+    + takeEffect():void
 }
 
 class FireSupply{
     + FireSupply(int locationX, int locationY,
     int speedX, int speedY):void
-    + takeEffect(HeroAircraft heroAircraft):void
+    + takeEffect():void
 }
 @enduml

@@ -5,7 +5,12 @@ import edu.hitsz.bullet.HeroBullet;
 
 import java.util.LinkedList;
 import java.util.List;
-
+/**
+ * 英雄机的直射策略
+ *
+ * @author ZLX
+ * @date 2022/4/28
+ */
 public class HeroStraightShoot implements Strategy {
     @Override
     public List<BaseBullet> doShoot(int locationX, int locationY, int speed, int direction, int shootNum, int power) {

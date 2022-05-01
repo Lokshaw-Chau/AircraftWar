@@ -13,7 +13,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-
+/**
+ * 访问历史游戏记录
+ *
+ * @author ZLX
+ * @date 2022/4/28
+ */
 public class RecordDaompl implements RecordDao {
     private static RecordDaompl recordDaompl;
 
@@ -115,9 +120,9 @@ public class RecordDaompl implements RecordDao {
     }
 
     @Override
-    public HistoryRecord makeRecord(int score, String ID) {
+    public HistoryRecord makeRecord(int score, String id) {
         HistoryRecord historyRecord = new HistoryRecord();
-        historyRecord.setPlayid(ID);
+        historyRecord.setPlayid(id);
         historyRecord.setScore(score);
         Date date = new Date();
         var simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");

@@ -3,24 +3,26 @@
 
 interface RecordDao{
     + getAll():List<HistoryRecord>
-    + addRecord():void
-    + deleteByRank(int rank):void
-    + sortByScore():void
-    + writeToFile():void
-    + makeRecord(int score):HistoryRecord
+    +{abstract} addRecord():void
+    +{abstract} deleteByRank(int rank):void
+    +{abstract} sortByScore():void
+    +{abstract} writeToFile():void
+    +{abstract} makeRecord(int score):HistoryRecord
 }
 
 class RecordDaompl{
+    -{static}RecordDaompl recordDaompl
     - RecordList:List<HistoryRecord>
     - path:Path
     - file:File
-    + RecordDaompl()
+    - RecordDaompl()
+    + getInstance():RecordDaompl
     + getAll():List<HistoryRecord>
     + addRecord():void
-    + deleteByRank(int rank):void
+    + deleteByRow(int row):void
     + sortByScore():void
     + writeToFile():void
-    + makeRecord():HistoryRecord
+    + makeRecord(int score, String id):HistoryRecord
 
 }
 
