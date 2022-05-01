@@ -50,7 +50,7 @@ public class Main {
         //游戏结束后获取分数进入排行榜
         synchronized (Main.RANKLOCK) {
             RANKLOCK.wait();
-            int score = HeroAircraft.creatHeroAircraft().getScore();
+            int score = HeroAircraft.getInstance().getScore();
             //维护数据
             //创建访问记录的对象
             RecordDaompl recordDaompl = RecordDaompl.getInstance();

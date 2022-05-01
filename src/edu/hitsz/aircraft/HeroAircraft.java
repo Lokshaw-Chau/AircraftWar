@@ -19,7 +19,12 @@ public class HeroAircraft extends AbstractAircraft {
      * 攻击方式
      */
     private int score = 0;
-    public static HeroAircraft heroAircraft = new HeroAircraft(0, 0, 0, 0, 0);
+    public static HeroAircraft heroAircraft = new HeroAircraft(
+            Main.WINDOW_WIDTH / 2,
+            Main.WINDOW_HEIGHT - ImageManager.HERO_IMAGE.getHeight(),
+            0,
+            0,
+            500);
     /**
      * 子弹一次发射数量
      */
@@ -47,16 +52,7 @@ public class HeroAircraft extends AbstractAircraft {
      */
     private HeroAircraft(int locationX, int locationY, int speedX, int speedY, int hp) {
         super(locationX, locationY, speedX, speedY, hp);
-    }
-
-    public static HeroAircraft creatHeroAircraft() {
-        heroAircraft.hp = heroAircraft.maxHp;
-        heroAircraft.locationX = Main.WINDOW_WIDTH / 2;
-        heroAircraft.locationY = Main.WINDOW_HEIGHT - ImageManager.HERO_IMAGE.getHeight();
-        heroAircraft.speedX = 0;
-        heroAircraft.speedY = 0;
-        heroAircraft.setStategy(new HeroStraightShoot());
-        return heroAircraft;
+        this.setStategy(new HeroStraightShoot());
     }
 
     public int getScore() {

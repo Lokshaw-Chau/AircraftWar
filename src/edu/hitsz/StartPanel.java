@@ -52,7 +52,11 @@ public class StartPanel {
         musicCheckBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                musicOn = false;
+                if (musicCheckBox.isSelected()) {
+                    musicOn = false;
+                } else {
+                    musicOn = true;
+                }
             }
         });
     }

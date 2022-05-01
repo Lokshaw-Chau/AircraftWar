@@ -1,7 +1,7 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class Game{
+class AbstractGame{
     # int difficultyIncreaseDuration
     # int difficultyCount
     # double magnification
@@ -66,7 +66,7 @@ class HardGame{
     # setHeroShootDuration():void
 }
 
-Game <|-- EasyGame
-Game <|-- HardGame
-Game <|-- NormalGame
+AbstractGame <|-- EasyGame
+AbstractGame <|-- HardGame
+AbstractGame <|-- NormalGame
 @enduml

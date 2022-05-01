@@ -9,7 +9,7 @@ class BombSupplyPublisher{
     - BombSupplyPublisher()
     + addFlyingObject(AbstactFlyingObject flyingObject):void
     + removeFlyingObject(AbstactFlyingObject subscriber):void
-    + getInstance():BombSupplyPublisher
+    + {static}getInstance():BombSupplyPublisher
     + induceExplosion():void
 }
 BombSupplyPublisher o--> AbstractFlyingObject

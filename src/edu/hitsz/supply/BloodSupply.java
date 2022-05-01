@@ -8,7 +8,7 @@ import edu.hitsz.aircraft.HeroAircraft;
  * @author Lau-Shaw Chau
  * @date 2022/04/04
  */
-public class BloodSupply extends AbstractSuppply {
+public class BloodSupply extends AbstractSupply {
     int maxHp = HeroAircraft.heroAircraft.getMaxHp();
     int heal = 20;
 
@@ -17,11 +17,11 @@ public class BloodSupply extends AbstractSuppply {
     }
 
     @Override
-    public void takeEffect(HeroAircraft heroAircraft) {
+    public void takeEffect() {
         System.out.println("BloodSupply Active");
-        heroAircraft.decreaseHp(-heal);
-        if (heroAircraft.getHp() > maxHp) {
-            heroAircraft.decreaseHp(heroAircraft.getHp() - maxHp);
+        HeroAircraft.getInstance().decreaseHp(-heal);
+        if (HeroAircraft.getInstance().getHp() > maxHp) {
+            HeroAircraft.getInstance().decreaseHp(HeroAircraft.getInstance().getHp() - maxHp);
         }
     }
 

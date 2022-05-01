@@ -10,13 +10,14 @@ import edu.hitsz.aircraft.HeroAircraft;
 import edu.hitsz.strategy.HeroScratteredShoot;
 import edu.hitsz.strategy.HeroStraightShoot;
 
-public class FireSupply extends AbstractSuppply {
+public class FireSupply extends AbstractSupply {
     public FireSupply(int locationX, int locationY, int speedX, int speedY) {
         super(locationX, locationY, speedX, speedY);
     }
 
     @Override
-    public void takeEffect(HeroAircraft heroAircraft) {
+    public void takeEffect() {
+        HeroAircraft heroAircraft = HeroAircraft.getInstance();
         Runnable task = () -> {
             System.out.println("FireSupply Active!");
             try {

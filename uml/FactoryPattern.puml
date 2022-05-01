@@ -6,18 +6,18 @@ abstract class AbstractAircraft
     + AbstractAircraft(int locationX, int locationY, int speedX, int speedY, int hp):void
     + decreaseHp(int decrease):void
     + getHp():int
-    + makeSupply():AbstractSupply
-    + {abstract} shoot():List<Bullet>
+    + makeSupply():List<AbstractSupply>
+    + {abstract} shoot():List<BaseBullet>
  }
  abstract class AbstractSupply
  {
      + AbstractSupply(int locationX, int locationY, int speedX, int speedY):void
-     + takeEffect(HeroAircraft heroAircraft):void
+     + takeEffect():void
  }
 
  interface EnemyFactory
  {
-     +{abstract} creatEnemy():AbstractAircraft
+     +{abstract} creatEnemy(double manification):AbstractAircraft
  }
  interface SupplyFactory
  {
@@ -25,15 +25,15 @@ abstract class AbstractAircraft
  }
 
  class MobEnemyFactory{
-     + creatEnemy():AbstractAircraft
+     + creatEnemy(double manification):AbstractAircraft
  }
 
  class EliteEnemyFactory{
-     + creatEnemy():AbstractAircraft
+     + creatEnemy(double manification):AbstractAircraft
  }
 
  class BossEnemyFactory{
-     + creatEnemy():AbstractAircraft
+     + creatEnemy(double manification):AbstractAircraft
  }
 
  class BloodSupplyFactory{
@@ -81,24 +81,30 @@ class EliteEnemy{
     - int shootNum
     - int power
     - int direction
+    - int strategy
     + EliteEnemy(int locationX, int locationY, int speedX, int speedY, int hp):void
     + forward():void
     + shoot():List<Bullet>
+    + explode():void
 }
 
 class BossEnemy{
     - int shootNum
     - int power
     - int direction
+    - int strategy
     + BossEnemy(int locationX, int locationY, int speedX, int speedY, int hp):void
     + forward():void
     + shoot():List<Bullet>
+    + explode()"void
 }
 
 class BloodSupply{
+    + int maxHp
+    + int heal
     + BloodSupply(int locationX, int locationY,
     int speedX, int speedY):void
-    + takeEffect(HeroAircraft heroAircraft):void
+    + takeEffect():void
 }
 
 class BombSupply{

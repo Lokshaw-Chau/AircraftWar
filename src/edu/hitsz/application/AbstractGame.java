@@ -3,7 +3,7 @@ package edu.hitsz.application;
 import edu.hitsz.aircraft.*;
 import edu.hitsz.basic.AbstractFlyingObject;
 import edu.hitsz.bullet.BaseBullet;
-import edu.hitsz.supply.AbstractSuppply;
+import edu.hitsz.supply.AbstractSupply;
 import edu.hitsz.supply.BombSupply;
 import edu.hitsz.supply.BombSupplyPublisher;
 
@@ -37,7 +37,7 @@ public abstract class AbstractGame extends JPanel {
     private final int timeInterval = 40;
     private final List<BaseBullet> heroBullets;
     private final List<BaseBullet> enemyBullets;
-    private final List<AbstractSuppply> suppplies;
+    private final List<AbstractSupply> supplies;
 
     private final HeroAircraft heroAircraft;
     protected final List<AbstractAircraft> enemyAircrafts;
@@ -70,12 +70,11 @@ public abstract class AbstractGame extends JPanel {
     protected int heroShootDuration = 600;
 
     public AbstractGame() {
-        heroAircraft = HeroAircraft.creatHeroAircraft();
-
+        heroAircraft = HeroAircraft.getInstance();
         enemyAircrafts = new LinkedList<>();
         heroBullets = new LinkedList<>();
         enemyBullets = new LinkedList<>();
-        suppplies = new LinkedList<>();
+        supplies = new LinkedList<>();
         //设置基本变量
         setMagnification();
         setBossScoreThreshold();
@@ -154,7 +153,7 @@ public abstract class AbstractGame extends JPanel {
                 // 游戏结束
                 executorService.shutdown();
                 gameOverFlag = true;
-                System.out.println("AbstractGame Over!");
+                System.out.println("Game Over!");
                 //打断所有bgm线程并启动gameover线程
                 bgmMusicThread.setRunning(false);
                 if (!bossNotExist) {
@@ -213,7 +212,6 @@ public abstract class AbstractGame extends JPanel {
     /**
      * 英雄机射击
      *
-     * @return void
      * @author ZLX
      * @date 2022/4/27
      * @param:
@@ -242,18 +240,19 @@ public abstract class AbstractGame extends JPanel {
     }
 
     private void supppliesMoveAction() {
-        for (AbstractSuppply suppply : suppplies) {
+        for (AbstractSupply suppply : supplies) {
             suppply.forward();
         }
     }
 
     /**
      * 创造敌机的模板方法
+     *
      * @author ZLX
      * @date 2022/4/27
      * @param:
      */
-    private final void creatEnemyAircraft() {
+    private void creatEnemyAircraft() {
         if (enemyAircrafts.size() < enemyMaxNumber) {
             Random random = new Random();
             int number = random.nextInt(100);
@@ -392,7 +391,7 @@ public abstract class AbstractGame extends JPanel {
                             bgmMusicThread.setRunning(true);
                         }
                         if (enemyAircraft instanceof EliteEnemy || enemyAircraft instanceof BossEnemy) {
-                            suppplies.addAll(enemyAircraft.makeSupply());
+                            supplies.addAll(enemyAircraft.makeSupply());
                             heroAircraft.addScore(20);
                         }
                         heroAircraft.addScore(10);
@@ -406,7 +405,7 @@ public abstract class AbstractGame extends JPanel {
             }
         }
         //我方获得道具，道具生效
-        for (AbstractSuppply suppply : suppplies) {
+        for (AbstractSupply suppply : supplies) {
             if (heroAircraft.crash(suppply)) {
                 //启动getsupply音效
                 new MusicThread("src/videos/get_supply.wav").start();
@@ -420,7 +419,7 @@ public abstract class AbstractGame extends JPanel {
                     //播放炸弹音效
                     new MusicThread("src/videos/bomb_explosion.wav").start();
                 }
-                suppply.takeEffect(heroAircraft);
+                suppply.takeEffect();
                 suppply.vanish();
             }
         }
@@ -439,7 +438,7 @@ public abstract class AbstractGame extends JPanel {
         enemyBullets.removeIf(AbstractFlyingObject::notValid);
         heroBullets.removeIf(AbstractFlyingObject::notValid);
         enemyAircrafts.removeIf(AbstractFlyingObject::notValid);
-        suppplies.removeIf(AbstractFlyingObject::notValid);
+        supplies.removeIf(AbstractFlyingObject::notValid);
     }
 
 
@@ -477,7 +476,7 @@ public abstract class AbstractGame extends JPanel {
         // 这样子弹显示在飞机的下层
         paintImageWithPositionRevised(g, enemyBullets);
         paintImageWithPositionRevised(g, heroBullets);
-        paintImageWithPositionRevised(g, suppplies);
+        paintImageWithPositionRevised(g, supplies);
         paintImageWithPositionRevised(g, enemyAircrafts);
 
         g.drawImage(ImageManager.HERO_IMAGE, heroAircraft.getLocationX() - ImageManager.HERO_IMAGE.getWidth() / 2,

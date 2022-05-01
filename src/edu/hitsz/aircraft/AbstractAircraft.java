@@ -39,8 +39,8 @@ public abstract class AbstractAircraft extends AbstractFlyingObject {
         return hp;
     }
 
-    public List<AbstractSuppply> makeSupply() {
-        List<AbstractSuppply> supplyList = new LinkedList<>();
+    public List<AbstractSupply> makeSupply() {
+        List<AbstractSupply> supplyList = new LinkedList<>();
         SupplyFactory supplyFactory = null;
         Random random = new Random();
         int bloodSupplyProbability = 30;
